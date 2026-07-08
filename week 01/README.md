@@ -13,7 +13,7 @@ This repository contains the weekly notebook submissions and machine learning pi
 - **Data Analysis:** Pandas, NumPy
 - **Machine Learning:** Scikit-Learn (Decision Tree Classifiers, Random Forests)
 
-##Additional Deliverable
+## Additional Deliverable
 
 - **research_question_framing.md**
 - **Capstone research question framing for the Search & Discoverability lane.**
