@@ -1,180 +1,203 @@
-Signal Audit
-Project Information
+# 📊 Signal Audit
 
-Project: Global Market AI Investment Prediction System
+## 🏷️ Project Information
 
-Phase: Build
+| Item | Details |
+|--------|--------|
+| Project | Global Market AI Investment Prediction System |
+| Phase | Build |
+| Deliverable | Signal Audit |
+| Dataset | Global Market AI Investment Dataset |
+| Rows | 120,000 |
+| Columns | 35 |
 
-Deliverable: Signal Audit
+---
 
-Dataset: Global Market AI Investment Dataset
+# 🎯 Objective
 
-Rows Analyzed: 120,000
+The purpose of this audit is to test whether commonly assumed market signals are actually visible in the data.
 
-Columns Analyzed: 35
+Rather than assuming a relationship exists, each signal is evaluated using exploratory data analysis (EDA).
 
-Objective
+### Verdict Definitions
 
-The purpose of this audit is to evaluate whether commonly assumed market signals are actually visible in the data.
+| Verdict | Meaning |
+|----------|----------|
+| ✅ CONFIRMED | Data supports the hypothesis |
+| ⚠️ MIXED | Some evidence exists, but results are inconsistent |
+| ❌ FALSE | Little or no evidence supports the hypothesis |
+| 🔄 OPPOSITE | Data suggests the reverse relationship |
 
-Rather than assuming a relationship exists, each signal is tested using exploratory data analysis (EDA). Results are reported using evidence-based verdicts:
+---
 
-CONFIRMED – Data supports the hypothesis.
-MIXED – Some evidence exists, but results are inconsistent.
-FALSE – Little or no evidence supports the hypothesis.
-OPPOSITE – Data suggests the reverse relationship.
+# 📈 Dataset Distribution
 
-The analysis focuses on practical interpretation rather than causal claims.
+## Investment Decision Distribution
 
-Dataset Distribution
-Investment Decision Distribution
+![Decision Distribution](decision_distribution.png)
 
-Observations
+### Observations
 
-The target variable contains three classes:
+- The target variable contains three classes:
+  - Invest
+  - Monitor
+  - Avoid
+- The dataset is heavily dominated by the **Avoid** class.
+- The **Invest** class represents the smallest proportion of observations.
+- This class imbalance should be considered during model development.
 
-Invest
-Monitor
-Avoid
+---
 
-The dataset is heavily dominated by the Avoid class, while Invest represents the smallest proportion of observations.
+# 🧪 Signal Test 1 — Liquidity Score
 
-This imbalance should be considered during later modeling stages.
+## Hypothesis
 
-Signal Test 1: Liquidity Score
-Hypothesis
+> Higher liquidity scores are associated with Invest recommendations.
 
-Higher liquidity scores are associated with Invest recommendations.
+## Results
 
-Method
+| Decision | Average Liquidity Score |
+|-----------|-----------|
+| Avoid | 0.5025 |
+| Invest | 0.4982 |
+| Monitor | 0.4992 |
 
-Average liquidity scores were compared across:
+![Liquidity Score](liquidity_vs_decision.png)
 
-Invest
-Monitor
-Avoid
-Results
-Decision	Average Liquidity Score
-Avoid	0.5025
-Invest	0.4982
-Monitor	0.4992
+## Verdict
 
-Verdict
-FALSE
-Interpretation
+❌ **FALSE**
 
-The average liquidity scores are nearly identical across all decision categories.
+## Interpretation
 
-Although liquidity is often considered important in financial analysis, this dataset does not provide strong evidence that liquidity alone distinguishes Invest opportunities from Avoid opportunities.
+The average liquidity scores are nearly identical across all recommendation categories.
 
-The signal may still contribute value when combined with other features.
+While liquidity is often considered an important financial indicator, the dataset does not provide strong evidence that liquidity alone differentiates Invest opportunities from Avoid opportunities.
 
-Signal Test 2: Volatility Index
-Hypothesis
+---
 
-Higher volatility is associated with Avoid recommendations.
+# 🧪 Signal Test 2 — Volatility Index
 
-Method
+## Hypothesis
 
-Volatility distributions and class averages were compared across investment decisions.
+> Higher volatility is associated with Avoid recommendations.
 
-Results
-Decision	Average Volatility Index
-Avoid	42.57
-Invest	42.80
-Monitor	42.39
+## Results
 
-Verdict
-FALSE
-Interpretation
+| Decision | Average Volatility Index |
+|-----------|-----------|
+| Avoid | 42.57 |
+| Invest | 42.80 |
+| Monitor | 42.39 |
 
-The volatility averages are very similar across all recommendation categories.
+![Volatility Index](volatility_vs_decision.png)
 
-The analysis does not support the assumption that higher volatility consistently results in Avoid recommendations.
+## Verdict
 
-Volatility may interact with other variables, but it does not appear to be a strong standalone signal.
+❌ **FALSE**
 
-Signal Test 3: Social Sentiment
-Hypothesis
+## Interpretation
 
-Positive social sentiment is associated with Invest recommendations.
+Volatility levels remain very similar across all recommendation categories.
 
-Method
+The analysis does not support the assumption that higher volatility consistently produces Avoid recommendations.
 
-Average sentiment values were compared across recommendation categories.
+---
 
-Results
-Decision	Average Social Sentiment
-Avoid	0.00058
-Invest	0.01360
-Monitor	0.00232
+# 🧪 Signal Test 3 — Social Sentiment
 
-Verdict
-CONFIRMED
-Interpretation
+## Hypothesis
+
+> Positive social sentiment is associated with Invest recommendations.
+
+## Results
+
+| Decision | Average Social Sentiment |
+|-----------|-----------|
+| Avoid | 0.00058 |
+| Invest | 0.01360 |
+| Monitor | 0.00232 |
+
+![Social Sentiment](sentiment_vs_decision.png)
+
+## Verdict
+
+✅ **CONFIRMED**
+
+## Interpretation
 
 Invest recommendations show the highest average sentiment values.
 
-This suggests that positive sentiment may be associated with favorable investment decisions within this dataset.
+This suggests that positive sentiment may be associated with favorable investment recommendations within this dataset.
 
-However, the relationship should be interpreted as a statistical association rather than proof of causation.
+---
 
-Signal Test 4: Market Trend
-Hypothesis
+# 🧪 Signal Test 4 — Market Trend
 
-Uptrend markets are more likely to receive Invest recommendations.
+## Hypothesis
 
-Method
+> Uptrend markets are more likely to receive Invest recommendations.
 
-Market trend categories were compared against investment decision counts.
+## Results
 
-Results
-Market Trend	Avoid	Invest	Monitor
-Downtrend	32,800	952	6,511
-Sideways	32,406	930	6,397
-Uptrend	32,678	1,007	6,319
-Verdict
-MIXED
-Interpretation
+| Market Trend | Avoid | Invest | Monitor |
+|-------------|--------|--------|--------|
+| Downtrend | 32,800 | 952 | 6,511 |
+| Sideways | 32,406 | 930 | 6,397 |
+| Uptrend | 32,678 | 1,007 | 6,319 |
 
-Uptrend markets contain slightly more Invest recommendations than other market conditions.
+## Verdict
+
+⚠️ **MIXED**
+
+## Interpretation
+
+Uptrend markets contain slightly more Invest recommendations.
 
 However, the differences are relatively small and do not provide strong evidence of a standalone relationship.
 
-Market trend may be more useful when analyzed alongside other market indicators.
+---
 
-Summary of Findings
-Signal	Verdict
-Liquidity Score	FALSE
-Volatility Index	FALSE
-Social Sentiment	CONFIRMED
-Market Trend	MIXED
-Practical Takeaways
+# 📋 Summary of Findings
 
-The analysis produced mixed evidence regarding common investment assumptions.
+| Signal | Verdict |
+|----------|----------|
+| Liquidity Score | ❌ FALSE |
+| Volatility Index | ❌ FALSE |
+| Social Sentiment | ✅ CONFIRMED |
+| Market Trend | ⚠️ MIXED |
 
-Key findings include:
+---
 
-Social Sentiment was the strongest signal observed in the dataset.
-Liquidity Score did not show meaningful separation between recommendation categories.
-Volatility Index did not demonstrate a strong standalone relationship with investment decisions.
-Market Trend showed weak evidence but may contribute value when combined with other features.
+# 💡 Practical Takeaways
 
-These results suggest that investment recommendations are likely influenced by combinations of factors rather than any single variable.
+### Key Findings
 
-Limitations
+1. Social Sentiment was the strongest signal identified in the dataset.
+2. Liquidity Score showed minimal separation between recommendation classes.
+3. Volatility Index did not demonstrate a strong standalone relationship.
+4. Market Trend showed weak evidence and may be more useful when combined with additional features.
 
-Several limitations should be considered:
+### Implication
 
-Correlation does not imply causation.
-Historical market conditions may differ from future market behavior.
-Individual signals were evaluated independently.
-Some relationships may only become visible when multiple variables are analyzed together.
-Results should not be interpreted as financial advice.
-Conclusion
+Investment recommendations appear to be influenced by combinations of variables rather than any single signal.
+
+---
+
+# ⚠️ Limitations
+
+- Correlation does not imply causation.
+- Historical market behavior may not reflect future conditions.
+- Individual signals were evaluated independently.
+- Some relationships may only emerge when multiple features are analyzed together.
+- Results should not be interpreted as financial advice.
+
+---
+
+# 🏁 Conclusion
 
 This signal audit demonstrates the importance of testing assumptions before model development.
 
-While some commonly cited indicators showed limited standalone value, Social Sentiment displayed a measurable association with investment recommendations.
+While some commonly cited indicators showed limited standalone value, **Social Sentiment** displayed a measurable association with investment recommendations.
 
-The findings support continued investigation using multivariate machine learning models while maintaining careful interpretation of results.
+These findings support further investigation using multivariate machine learning models while maintaining careful interpretation of results.
