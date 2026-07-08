@@ -13,9 +13,19 @@ This repository contains the weekly notebook submissions and machine learning pi
 - **Data Analysis:** Pandas, NumPy
 - **Machine Learning:** Scikit-Learn (Decision Tree Classifiers, Random Forests)
 
+**Additional Deliverable
+
+research_question_framing.md
+Capstone research question framing for the Search & Discoverability lane.**
+
 ## Getting Started
 
 To run the notebooks locally or in Google Colab, ensure you install the necessary dependencies:
 
 ```bash
 pip install -r requirements.txt
+
+**Additional Deliverable
+
+research_question_framing.md
+Capstone research question framing for the Search & Discoverability lane.**
