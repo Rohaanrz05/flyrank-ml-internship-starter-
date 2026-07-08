@@ -2,121 +2,151 @@
 
 ## Project Title
 
-AI-Powered Smart Route Recommendation and Optimization System
+Global Market AI Investment Prediction System
 
 ## Chosen Lane
 
-Core Lane: Search & Discoverability
+Advanced Lane (Mentor-Gated): Financial Market Intelligence & Decision Support
 
 ---
 
 ## ML Task Type
 
-### Primary Task: Ranking
+### Primary Task: Multiclass Classification
 
-The objective of the system is to rank available routes between an origin and destination according to their predicted usefulness.
+The objective of the system is to classify market opportunities into one of three categories:
 
-Instead of making a simple yes/no decision, the system evaluates multiple route options and orders them from most suitable to least suitable.
+- Invest
+- Monitor
+- Avoid
 
-The ranking should consider factors such as:
-
-- Distance
-- Travel time
-- Traffic congestion
-- Road conditions
-- Historical performance
-- Route reliability
-
-The highest-ranked route becomes the primary recommendation presented to the user.
+Each prediction represents a recommended action based on observed market characteristics.
 
 ---
 
-## Target / Proxy
+## Target Variable
 
-A perfect target would be the actual usefulness of a route as experienced by a traveler.
+### Target
 
-Since usefulness is difficult to measure directly, the project will use proxy targets such as:
+AI_Investment_Decision
 
-- Actual travel duration
-- Delay compared with expected travel time
-- Historical route reliability
-- Congestion levels
+### Possible Classes
 
-These indicators help estimate the overall quality of a route.
+- Invest
+- Monitor
+- Avoid
+
+This target represents the recommended investment action associated with each market observation.
 
 ---
 
-## Success Metric
+## Input Features
 
-Several metrics may be used to evaluate the recommendation quality:
+Examples of available features include:
 
-### Primary Metric
+- Market Type
+- Country
+- Asset Sector
+- Trading Volume
+- Market Capitalization
+- Volatility Index
+- Liquidity Score
+- Inflation Rate
+- Interest Rate
+- Currency Strength Index
+- Market Trend
+- Economic Impact Score
+- Social Sentiment
 
-Average prediction error for travel duration (MAE or RMSE)
+These variables provide information about market conditions and asset behavior.
+
+---
+
+## Success Metrics
+
+### Primary Metrics
+
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+
+These metrics evaluate how effectively the model distinguishes between investment decision categories.
 
 ### Secondary Metrics
 
-- Route ranking accuracy
-- Percentage of recommendations that match the best-performing historical route
-- Reduction in estimated travel time compared with baseline methods
-
-The final metric selection may depend on data availability and project scope.
+- Confusion Matrix Analysis
+- Class-Level Performance Evaluation
+- Error Distribution Analysis
 
 ---
 
 ## Action Supported by the Output
 
-The output supports a real-world travel decision.
+The prediction supports a real investment decision.
 
-After receiving route recommendations, a user may:
+After receiving a recommendation, a user may:
 
-- Select the recommended route
-- Compare alternative routes
-- Adjust departure timing
-- Avoid high-congestion paths
+- Invest in an opportunity
+- Continue monitoring market conditions
+- Avoid investing
 
-The recommendation is intended to assist decision-making rather than replace human judgment.
+The output is intended to support, not replace, human judgment.
 
 ---
 
 ## Why This Is Not Just a Fixed Rule Problem
 
-A simple rule-based system might always choose:
+A simple rule-based approach might suggest:
 
-- The shortest route
-- The route with the lowest estimated travel time
+- Invest when expected returns are high.
+- Avoid when risk is high.
 
-However, transportation systems contain complex patterns that cannot always be captured through fixed rules.
+However, market behavior is influenced by multiple interacting factors, including:
 
-For example:
+- Economic conditions
+- Volatility
+- Liquidity
+- Market sentiment
+- Global events
+- Sector-specific trends
 
-- Traffic conditions change throughout the day.
-- Similar routes may perform differently under different circumstances.
-- Historical congestion patterns may influence future travel outcomes.
+These relationships are often complex and difficult to capture through static rules.
 
-Because many factors interact simultaneously, machine learning can help identify patterns and relationships that would be difficult to encode manually.
+Machine learning can learn patterns from historical observations and adapt to interactions among multiple variables.
 
 ---
 
 ## Role of Data and Machine Learning
 
-Machine learning provides a way to learn from historical transportation data and improve route recommendations over time.
+Machine learning provides a systematic approach for analyzing large volumes of financial data.
 
-Rather than relying solely on predefined rules, the system can use observed route performance to estimate which routes are most likely to provide efficient and reliable travel experiences.
+Instead of relying solely on manually defined rules, the system can learn patterns associated with historical investment outcomes and generate data-driven recommendations.
 
-The model serves as a decision-support tool whose recommendations are based on data-driven insights.
+The model functions as a decision-support tool that assists users in evaluating potential opportunities.
 
 ---
 
-## Real-World Impact
-
-The project aims to help users make more informed travel decisions.
+## Expected Value
 
 Potential benefits include:
 
-- Reduced travel delays
-- Better route discoverability
-- Improved logistics planning
-- More efficient transportation decisions
+- Faster investment analysis
+- Improved consistency in recommendations
+- Better utilization of market data
+- Enhanced decision support
 
-Recommendations should be interpreted as guidance rather than guarantees because future conditions may differ from historical patterns.
+The project focuses on assisting human decision makers rather than guaranteeing investment success.
+
+---
+
+## Risks and Responsible Use
+
+Users should recognize that:
+
+- Historical patterns may not repeat.
+- Financial markets are inherently uncertain.
+- Model predictions can be incorrect.
+- Recommendations should not be interpreted as financial advice.
+
+Outputs should be combined with human expertise and additional analysis before making investment decisions.
