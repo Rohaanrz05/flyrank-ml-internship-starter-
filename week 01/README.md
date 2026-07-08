@@ -25,7 +25,4 @@ To run the notebooks locally or in Google Colab, ensure you install the necessar
 ```bash
 pip install -r requirements.txt
 
-**Additional Deliverable
 
-research_question_framing.md
-Capstone research question framing for the Search & Discoverability lane.**
