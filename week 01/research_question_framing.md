@@ -2,138 +2,160 @@
 
 ## Project Title
 
-AI-Powered Smart Route Recommendation and Optimization System
+Global Market AI Investment Prediction System
 
 ## Provisional Lane
 
-Core Lane: Search & Discoverability
+Advanced Lane (Mentor-Gated): Financial Market Intelligence & Decision Support
+
+---
 
 ## Problem Statement
 
-Every day, travelers, delivery drivers, ride-sharing services, and logistics companies must decide which route to take between two locations. Most navigation systems focus heavily on distance or estimated travel time, but real-world conditions such as traffic congestion, road quality, accidents, weather conditions, and peak travel hours can significantly affect the effectiveness of a route.
+Financial markets generate large volumes of information every day, including price movements, trading activity, economic indicators, technical signals, and public sentiment. Investors must analyze these factors before deciding whether to invest, monitor, or avoid a particular opportunity.
 
-As transportation networks become more complex, users are often presented with multiple route options without sufficient insight into which route is likely to provide the best overall travel experience.
+The challenge is that these variables interact in complex ways and may produce conflicting signals. Relying solely on manual analysis or fixed rules can be time-consuming and may overlook important patterns.
 
-This project aims to explore how historical and real-time transportation data can be used to improve route discoverability and support better travel decisions.
+This project investigates whether machine learning can assist investors by identifying patterns in historical market data and generating data-driven investment recommendations.
+
+---
 
 ## Research Question
 
-How can historical traffic patterns, route characteristics, travel duration, and road-condition data be used to recommend the most efficient and reliable route between an origin and destination?
+How can historical market indicators, sentiment measures, technical signals, and economic conditions be used to support investment decision-making by classifying opportunities as Invest, Monitor, or Avoid?
 
-The objective is not to guarantee the fastest route in every situation, but to provide data-driven recommendations that help users make more informed travel decisions.
+The objective is not to predict the future with certainty but to provide evidence-based recommendations that support human decision making.
+
+---
 
 ## Decision Being Supported
 
-The primary decision supported by this system is:
+The system supports the following investment decision:
 
-**Which route should a user select when multiple travel options are available?**
+**What action should be taken for a particular market opportunity?**
 
-The recommendation should help users balance travel time, reliability, and potential traffic-related delays.
+Possible actions include:
+
+- Invest
+- Monitor
+- Avoid
+
+---
 
 ## Intended Users
 
 Potential users include:
 
-* Daily commuters
-* Ride-sharing drivers
-* Delivery personnel
-* Logistics companies
-* Transportation planners
-* Travelers unfamiliar with a location
+- Individual investors
+- Financial analysts
+- Portfolio managers
+- Investment researchers
+- Students studying financial analytics
+
+---
 
 ## Unit of Analysis
 
-The unit of analysis is a single route instance between a source and destination.
+The unit of analysis is a single market observation.
 
-Each route may contain features such as:
+Each observation contains information such as:
 
-* Distance
-* Estimated travel time
-* Traffic congestion level
-* Road condition score
-* Time of day
-* Day of week
-* Historical route performance
-* Route reliability indicators
+- Market conditions
+- Asset characteristics
+- Economic indicators
+- Trading behavior
+- Market sentiment
+- Volatility measures
 
-Each route instance will represent one candidate option that can be evaluated and compared with alternative routes.
+The model evaluates each observation independently and produces an investment recommendation.
+
+---
 
 ## Expected Output
 
-The system is expected to generate one or more of the following outputs:
+The system produces one of three recommendation categories:
 
-* Recommended route
-* Route ranking score
-* Predicted travel duration
-* Congestion risk estimate
-* Reliability score
+- Invest
+- Monitor
+- Avoid
 
-The output should assist users in evaluating available route choices rather than automatically making decisions on their behalf.
+The output is intended to assist decision-making rather than automate investment activity.
+
+---
 
 ## Action a User Can Take
 
 After reviewing the recommendation, a user may:
 
-* Select the recommended route
-* Compare alternative routes
-* Adjust travel plans based on predicted congestion
-* Choose a route that better matches their priorities
+- Invest in the asset
+- Continue monitoring market developments
+- Avoid entering a position
 
-The recommendation serves as decision support rather than a mandatory instruction.
+The final decision remains under human control.
+
+---
 
 ## Cost of a Wrong Recommendation
 
-An incorrect recommendation may result in:
+Incorrect recommendations may result in:
 
-* Increased travel time
-* Additional fuel consumption
-* Delayed deliveries
-* Missed appointments
-* Reduced user confidence in the system
+- Financial losses
+- Missed investment opportunities
+- Poor portfolio allocation
+- Reduced confidence in the system
 
-While these outcomes can create inconvenience and operational costs, they are generally lower risk than errors in domains such as healthcare, law, or financial decision-making.
+Because financial markets are uncertain, recommendations should be interpreted as guidance rather than guarantees.
+
+---
 
 ## Why Data and Machine Learning Can Help
 
-Transportation data often contains complex patterns that are difficult to identify using simple rules.
+Financial data contains relationships that may not be obvious through manual analysis.
 
-For example:
+Machine learning can help identify patterns involving:
 
-* Traffic conditions vary by time and location.
-* Similar routes may perform differently under different circumstances.
-* Historical travel patterns can reveal recurring congestion trends.
+- Market volatility
+- Liquidity conditions
+- Economic indicators
+- Technical signals
+- Market sentiment
 
-Machine learning may help identify relationships between route features and travel outcomes, enabling more informed recommendations than fixed rule-based approaches.
+These patterns may improve decision support compared with relying exclusively on static rules.
 
-## Why This Problem Is More Than Training a Model
+---
 
-The purpose of this project is not simply to build a predictive model.
+## Why This Is More Than Training a Model
 
-The broader objective is to support a real-world decision-making process.
+The goal of this project is not simply to maximize predictive accuracy.
+
+The broader objective is to support a real-world investment decision.
 
 Success depends on:
 
-* Understanding user needs
-* Evaluating route alternatives
-* Measuring recommendation quality
-* Communicating uncertainty
-* Considering the impact of incorrect recommendations
+- Data quality
+- Feature selection
+- Leakage prevention
+- Recommendation usefulness
+- Risk awareness
+- Responsible interpretation of results
 
-A machine learning model is only one component of a larger decision-support system.
+The machine learning model is only one component of a larger decision-support system.
+
+---
 
 ## Assumptions and Limitations
 
 This project recognizes several limitations:
 
-* Historical data may not fully predict future traffic conditions.
-* Data quality may vary across locations and time periods.
-* Unexpected events such as accidents or road closures may affect route performance.
-* Recommendations should be treated as guidance rather than guarantees.
+- Historical data cannot guarantee future outcomes.
+- Market conditions change over time.
+- Unexpected events can influence market behavior.
+- Recommendations may be incorrect under certain conditions.
 
-For these reasons, recommendations will be presented with appropriate caution.
+For these reasons, model outputs should be treated as decision-support information rather than financial advice.
+
+---
 
 ## Provisional Status
 
-This project is currently proposed under the Search & Discoverability lane.
-
-The final lane selection may be refined or adjusted before Week 4 based on data availability, project feasibility, mentor feedback, and findings during the initial research phase.
+The project direction may evolve during later stages of the capstone based on mentor feedback, data quality assessments, and implementation findings.
