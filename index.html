@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Machine-Learned Decision Support for Search Content Decay</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --muted: #555555;
+      --border: #e2e8f0;
+      --accent: #1e3a8a;
+      --code-bg: #f8fafc;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.68;
+      color: var(--text);
+      background: var(--bg);
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    h1 { font-size: 2.1rem; line-height: 1.25; margin-bottom: 0.5rem; color: #0f172a; }
+    h2 { font-size: 1.35rem; margin-top: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.3rem; color: var(--accent); }
+    h3 { font-size: 1.1rem; margin-top: 1.5rem; }
+    .author-block { font-size: 0.95rem; color: var(--muted); margin-bottom: 2rem; }
+    .abstract {
+      background: var(--code-bg);
+      border-left: 4px solid var(--accent);
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      color: #334155;
+    }
+    table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.95rem; }
+    th, td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
+    th { background: var(--code-bg); font-weight: 600; }
+    img { max-width: 100%; height: auto; border-radius: 4px; border: 1px solid var(--border); margin: 1rem 0; }
+    code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+    ul { padding-left: 1.25rem; }
+    li { margin-bottom: 0.35rem; }
+    footer { margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--muted); }
+    a { color: var(--accent); text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <h1>Optimizing Editorial Allocation: Machine-Learned Decision Support for Search Content Decay</h1>
+  <div class="author-block">
+    <strong>M. Rohaan Zahid</strong> · ML Engineering Intern · FlyRank Track
+  </div>
+
+  <div class="abstract">
+    <strong>Abstract:</strong> Maintaining organic search performance across enterprise web properties requires prioritizing content refreshes before engagement severely decays. In this study, we evaluate whether gradient-boosted decision trees trained on rolling search metrics can outrank traditional heuristic rules. Evaluating models across client-grouped validation splits, we observed an NDCG@10 lift of +0.094 over baseline scoring rules. These results translate directly into an actionable editorial playbook with strict reason codes. The methodology demonstrates that machine learning provides measurable decision support for content lifecycle triage while highlighting areas requiring human oversight.
+  </div>
+
+  <h2>1. Introduction & Problem Statement</h2>
+  <p>Content aging in search engine results pages (SERPs) follows non-linear decay dynamics. Manual editorial triage across thousands of URLs is operationally inefficient. This project designs, evaluates, and audits a supervised decision-support pipeline that ranks decay risk and assigns structured reason codes to queue high-priority pages for editorial review.</p>
+
+  <h2>2. Data & Sanitization</h2>
+  <p>This work evaluates features extracted from production-scale search performance datasets. To ensure public safety and data integrity:</p>
+  <ul>
+    <li>All client names, actual domains, and query strings are anonymized and hashed.</li>
+    <li>Features include rolling 90-day pre-intervention aggregates: <code>historical_ctr</code>, <code>serp_position</code>, <code>staleness_days</code>, and <code>term_overlap_score</code>.</li>
+    <li>Low-volume tail queries (&lt;5 lifetime impressions) were excluded to prevent sparse noise.</li>
+  </ul>
+
+  <h2>3. Methodology & Validation Design</h2>
+  <p>To prevent target and group leakage, we implemented a strict <strong>Grouped Split (60/20/20)</strong> partitioned on client domain and query cluster IDs. No URLs from evaluated domains in the test split were present during training. All feature windows strictly precede the evaluation target date.</p>
+
+  <h2>4. Results vs. Baseline</h2>
+  <p>All candidate models were evaluated on the identical held-out test split against the Week-4 rule-based heuristic:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Validation Split</th>
+        <th>Accuracy</th>
+        <th>NDCG@10</th>
+        <th>Lift vs Baseline</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Week-4 Baseline Heuristic</strong></td>
+        <td>Grouped (Domain-Level)</td>
+        <td>65.0%</td>
+        <td>0.420</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong>Logistic Regression</strong></td>
+        <td>Grouped (Domain-Level)</td>
+        <td>68.2%</td>
+        <td>0.453</td>
+        <td>+0.033</td>
+      </tr>
+      <tr>
+        <td><strong>Random Forest</strong></td>
+        <td>Grouped (Domain-Level)</td>
+        <td>71.4%</td>
+        <td>0.485</td>
+        <td>+0.065</td>
+      </tr>
+      <tr>
+        <td><strong>XGBoost (LambdaMART)</strong></td>
+        <td>Grouped (Domain-Level)</td>
+        <td>73.1%</td>
+        <td>0.514</td>
+        <td><strong>+0.094</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <p><em>XGBoost provided the strongest ranking metric, confirming that tree ensembles effectively resolve non-monotonic decay signals.</em></p>
+
+  <h2>5. Limitations & Honest Claim Boundaries</h2>
+  <ul>
+    <li><strong>Directional Decision Support:</strong> Predictions reflect historical statistical correlation, not direct causal drivers of search traffic.</li>
+    <li><strong>External SERP Volatility:</strong> Unobserved search engine core algorithm updates and competitor activity fall outside the model scope.</li>
+    <li><strong>Tail Asset Uncertainty:</strong> Cold-start documents with low historical volume retain higher prediction variance.</li>
+  </ul>
+
+  <h2>6. Ranked Action Playbook</h2>
+  <ul>
+    <li><code>COMPREHENSIVE_REFRESH</code>: High model risk score combined with staleness &gt;180 days.</li>
+    <li><code>TITLE_CTR_OPTIMIZE</code>: Top 15 SERP position with below-average CTR conversion.</li>
+    <li><code>CONSOLIDATE_OR_PRUNE</code>: Persistent low impression volume on aging content assets.</li>
+    <li><strong>Strict No-Go Automation List:</strong> Automated document deletion, algorithmic URL pruning, and unreviewed bulk 301 redirects are prohibited.</li>
+  </ul>
+
+  <h2>7. Reproducibility</h2>
+  <p>All pipeline stages, validation notebooks, and metric receipts are versioned in the repository:</p>
+  <ul>
+    <li>Validation Audit Notebook: <code>work/notebooks/w06_validation_audit.ipynb</code></li>
+    <li>Action Playbook Notebook: <code>work/notebooks/w07_action_playbook.ipynb</code></li>
+    <li>Capstone Master Notebook: <code>work/notebooks/capstone.ipynb</code></li>
+  </ul>
+
+  <footer>
+    <p><strong>Acknowledgments & Data Credit:</strong> Built on the FlyRank ML Internship dataset. For more details on the platform, visit <a href="https://flyrank.ai" target="_blank" rel="noopener noreferrer">FlyRank.ai</a>.</p>
+  </footer>
+
+</body>
+</html>
